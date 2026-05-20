@@ -1,0 +1,12 @@
+name: 'adp-devsite-fastly-purge-action'
+description: 'Purge public HTML and JSON files cached by Fastly'
+runs:
+  using: 'node24'
+  main: 'dist/index.js'
+inputs:
+  fastly-token:
+    description: Token used to call the Fastly purge API
+    required: true
+  fastly-url:
+    description: Fastly base URL
+    required: true
