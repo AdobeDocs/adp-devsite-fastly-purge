@@ -2,6 +2,7 @@
   "name": "adp-devsite-fastly-purge",
   "version": "1.0.0",
   "description": "Purge resources on the adp devsite using Fastly apis",
+  "type": "module",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
@@ -17,8 +18,8 @@
   },
   "license": "BSD-3-Clause",
   "dependencies": {
-    "@actions/core": "^1.10.0",
-    "@actions/glob": "^0.5.0"
+    "@actions/core": "^3.0.1",
+    "@actions/glob": "^0.6.1"
   },
   "devDependencies": {
     "@vercel/ncc": "0.38.4"

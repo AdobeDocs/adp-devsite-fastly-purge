@@ -1,6 +1,6 @@
 'use strict';
 
-var util = require('util');
+import { format } from 'util';
 
 function request(options, callback) {
     fetch(options.url, { method: options.method, headers: options.headers })
@@ -58,7 +58,7 @@ FastlyPurge.prototype.service = function(serviceId, options, callback) {
     request(
         {
             method: 'POST',
-            url: fastlyUrl(util.format('/service/%s/purge_all', serviceId)),
+            url: fastlyUrl(format('/service/%s/purge_all', serviceId)),
             headers: requestHeaders(options)
         },
         responseHandler(callback)
@@ -84,7 +84,7 @@ FastlyPurge.prototype.key = function(serviceId, key, options, callback) {
     request(
         {
             method: 'POST',
-            url: fastlyUrl(util.format('/service/%s/purge/%s', serviceId, key)),
+            url: fastlyUrl(format('/service/%s/purge/%s', serviceId, key)),
             headers: requestHeaders(options)
         },
         responseHandler(callback)
@@ -152,17 +152,17 @@ function fastlyUrl(path) {
     return FASTLY_API_ENDPOINT + path;
 }
 
-const core = require('@actions/core');
-const glob = require('@actions/glob');
+import { getInput, setFailed } from '@actions/core';
+import { create as createGlob } from '@actions/glob';
 
 (async () => {
   try {
-    const FASTLY_TOKEN = core.getInput('fastly-token');
-    const FASTLY_URL = core.getInput('fastly-url');
+    const FASTLY_TOKEN = getInput('fastly-token');
+    const FASTLY_URL = getInput('fastly-url');
 
     const purge = new FastlyPurge(FASTLY_TOKEN);
     const patterns = ['public/**/*.json', 'public/**/*.html', 'public/**/*.css', 'public/**/*.js', 'public/**/*.js.map', 'public/**/*.webp', 'public/**/*.svg', 'public/**/*.png', 'public/**/*.jpeg', 'public/**/*.jpg', 'public/**/*.gif'];
-    const globber = await glob.create(patterns.join('\n'));
+    const globber = await createGlob(patterns.join('\n'));
 
     const purgeURL = (url) => {
       return new Promise((res, rej) => {
@@ -191,6 +191,6 @@ const glob = require('@actions/glob');
       await process(file.substr(file.indexOf('/public/') + 8));
     }
   } catch (err) {
-    core.setFailed(err);
+    setFailed(err);
   }
 })();
