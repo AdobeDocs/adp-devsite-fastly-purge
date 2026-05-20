@@ -1,0 +1,24 @@
+{
+  "name": "adp-devsite-fastly-purge",
+  "version": "1.0.0",
+  "description": "Purge resources on the adp devsite using Fastly apis",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AdobeDocs/adp-devsite-fastly-purge"
+  },
+  "scripts": {
+    "build": "ncc build index.js -C --out lib",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "author": {
+    "name": "Tim Kim",
+    "url": "https://github.com/timkim"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@vercel/ncc": "0.38.4"
+  }
+}
