@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "Purge resources on the adp devsite using Fastly apis",
   "type": "module",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/AdobeDocs/adp-devsite-fastly-purge"
   },
   "scripts": {
-    "build": "ncc build index.js -C --out lib",
+    "build": "ncc build index.js -C --out dist",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "author": {
